@@ -95,6 +95,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety"
+  responsive_scaffold:
+    dependency: "direct main"
+    description:
+      name: responsive_scaffold
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0+2"
+  scroll_to_index:
+    dependency: transitive
+    description:
+      name: scroll_to_index
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   sky_engine:
     dependency: transitive
     description: flutter
