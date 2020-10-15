@@ -16,15 +16,15 @@ class _homepageState extends State<homepage> {
 
   List<songOuter> songs =[
     songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
-    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/bekhayali.jpg","Kabir Singh","Sachet Tandon"),
+    songOuter("images/humnava mere.jpg","Album Song","Rocky-Shiv"),
+    songOuter("images/dil bechara.jpg","Dil Bechara","A. R. Rahman"),
+    songOuter("images/filhall.jpg","Filhall","B Praak"),
+    songOuter("images/pachtaoge.jpg","Pachataoge","Arijit Singh"),
+    songOuter("images/sun raha hai.jpg","Aashiqui 2","Ankit Tiwari"),
+    songOuter("images/thodi jagah.jpg","Marjaavaan","Arijit Singh"),
+    songOuter("images/valam.jpg","Made in Chaina","Priya Saraiya, Sachin–Jigar, Arijit Singh"),
+    songOuter("images/khairiyat.jpg","Chhichhore","Arijit Singh"),
   ];
 
   int gridcount  = 2;
