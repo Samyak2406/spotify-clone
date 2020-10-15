@@ -14,14 +14,23 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
 
-
-
+  List<songOuter> songs =[
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+    songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+  ];
 
   int gridcount  = 2;
 
   int gridCounter(context){
     var width = MediaQuery.of(context).size.width;
-//    print(width);
     if(width>=1100){
       setState(() {
         gridcount=5;
@@ -41,7 +50,6 @@ class _homepageState extends State<homepage> {
       setState(() {
         gridcount=2;
       });
-      print(gridcount);
     }
     return gridcount;
   }
@@ -53,51 +61,7 @@ class _homepageState extends State<homepage> {
       body: SafeArea(
         child: Row(
           children: [
-            Expanded(
-              child: Container(
-                color: leftbar,
-                child: FractionallySizedBox(
-                  heightFactor: 1,
-                  widthFactor: 0.8,
-                  child: Center(
-                    child: ListView(
-                      children: [
-                        Container(
-                          height: AppBar().preferredSize.height * 1.4,
-                          alignment: Alignment.bottomLeft,
-                          child: FractionallySizedBox(
-                            heightFactor: 0.85,
-                            widthFactor: 0.8,
-                            child: Image.asset("images/logo.png"),
-                          ),
-                        ),
-                        homesidetiles(Icons.home,"Home"),
-                        homesidetiles(Icons.search,"Search"),
-                        homesidetiles(Icons.library_add,"Library"),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          "PLAYLISTS",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.grey.shade400,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        homesidetiles2(Icons.add,"Createt PlayList"),
-                        homesidetiles2(LineIcons.heart,"Liked Songs"),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            no1(),
             Expanded(
               flex: 6,
               child: Stack(
@@ -151,7 +115,7 @@ class _homepageState extends State<homepage> {
                               mainAxisSpacing: 20,
                               children: List.generate(
                                 6,
-                                (index) => songcard("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+                                (index) => songcard(songs[index].path,songs[index].title,songs[index].subtitle),
                               ),
                             ),
                             Container(
@@ -192,8 +156,8 @@ class _homepageState extends State<homepage> {
                               crossAxisSpacing: 20,
                               mainAxisSpacing: 20,
                               children: List.generate(
-                                6,
-                                    (index) => songcard("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
+                                10,
+                                    (index) => songcard(songs[index].path,songs[index].title,songs[index].subtitle),
                               ),
                             ),
                           ],
@@ -212,49 +176,53 @@ class _homepageState extends State<homepage> {
   }
 }
 
-class songcard extends StatelessWidget {
-  String imagepath,title,subtitle;
 
-  songcard(
-      this.imagepath,
-      this.title,
-      this.subtitle
-      );
-
+class no1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    return Expanded(
+      child: Container(
+        color: leftbar,
         child: FractionallySizedBox(
-          heightFactor: 0.9,
+          heightFactor: 1,
           widthFactor: 0.8,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(imagepath),
-              Flexible(
-                child: Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  style: cardtitle,
+          child: Center(
+            child: ListView(
+              children: [
+                Container(
+                  height: AppBar().preferredSize.height * 1.4,
+                  alignment: Alignment.bottomLeft,
+                  child: FractionallySizedBox(
+                    heightFactor: 0.85,
+                    widthFactor: 0.8,
+                    child: Image.asset("images/logo.png"),
+                  ),
                 ),
-              ),
-              Flexible(
-                child: Text(
-                  subtitle,
-                  overflow: TextOverflow.ellipsis,
-                  style: cardsubtitle,
-                  maxLines: 3,
+                homesidetiles(Icons.home,"Home"),
+                homesidetiles(Icons.search,"Search"),
+                homesidetiles(Icons.library_add,"Library"),
+                SizedBox(
+                  height: 25,
                 ),
-              ),
-            ],
+                Text(
+                  "PLAYLISTS",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.grey.shade400,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                homesidetiles2(Icons.add,"Createt PlayList"),
+                homesidetiles2(LineIcons.heart,"Liked Songs"),
+              ],
+            ),
           ),
         ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Color(0xff171717),
       ),
     );
   }

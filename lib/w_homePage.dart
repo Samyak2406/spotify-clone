@@ -122,3 +122,51 @@ class appBar extends StatelessWidget {
     );
   }
 }
+
+class songcard extends StatelessWidget {
+  String imagepath,title,subtitle;
+
+  songcard(
+      this.imagepath,
+      this.title,
+      this.subtitle
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: FractionallySizedBox(
+          heightFactor: 0.9,
+          widthFactor: 0.8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(imagepath),
+              Flexible(
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  style: cardtitle,
+                ),
+              ),
+              Flexible(
+                child: Text(
+                  subtitle,
+                  overflow: TextOverflow.ellipsis,
+                  style: cardsubtitle,
+                  maxLines: 3,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Color(0xff171717),
+      ),
+    );
+  }
+}

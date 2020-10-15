@@ -17,7 +17,7 @@ var sidebar =TextStyle(
 
 var cardtitle =TextStyle(
   color: Colors.white,
-  fontSize: 13,
+  fontSize: 14,
   letterSpacing: 1.2,
   fontWeight: FontWeight.w700,
 );
@@ -28,3 +28,14 @@ var cardsubtitle =TextStyle(
   fontSize: 11,
   fontWeight: FontWeight.w400,
 );
+
+class songOuter{
+  String path;
+  String title;
+  String subtitle;
+  songOuter(
+      this.path,
+      this.title,
+      this.subtitle
+      );
+}
