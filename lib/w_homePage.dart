@@ -7,7 +7,7 @@ class homesidetiles extends StatelessWidget {
   var icon;
   var text;
 
-  homesidetiles(this.icon,this.text);
+  homesidetiles(this.icon, this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class homesidetiles extends StatelessWidget {
           ),
           Flexible(
             child: Text(
-              "   "+text,
+              "   " + text,
               style: sidebar,
               overflow: TextOverflow.ellipsis,
             ),
@@ -38,7 +38,7 @@ class homesidetiles2 extends StatelessWidget {
   var icon;
   var text;
 
-  homesidetiles2(this.icon,this.text);
+  homesidetiles2(this.icon, this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +50,17 @@ class homesidetiles2 extends StatelessWidget {
           Container(
             height: 30,
             width: 30,
-            color: icon==LineIcons.heart ? Colors.blue:Colors.grey,
+            color: icon == LineIcons.heart ? Colors.blue : Colors.grey,
             child: Icon(
               icon,
-              color:  icon==LineIcons.heart ? Colors.grey.shade200:Colors.black,
+              color:
+                  icon == LineIcons.heart ? Colors.grey.shade200 : Colors.black,
               size: 20,
             ),
           ),
           Flexible(
             child: Text(
-              "   "+text,
+              "   " + text,
               style: sidebar,
               overflow: TextOverflow.ellipsis,
             ),
@@ -69,7 +70,6 @@ class homesidetiles2 extends StatelessWidget {
     );
   }
 }
-
 
 class appBar extends StatelessWidget {
   @override
@@ -124,13 +124,9 @@ class appBar extends StatelessWidget {
 }
 
 class songcard extends StatelessWidget {
-  String imagepath,title,subtitle;
+  String imagepath, title, subtitle;
 
-  songcard(
-      this.imagepath,
-      this.title,
-      this.subtitle
-      );
+  songcard(this.imagepath, this.title, this.subtitle);
 
   @override
   Widget build(BuildContext context) {
@@ -139,27 +135,38 @@ class songcard extends StatelessWidget {
         child: FractionallySizedBox(
           heightFactor: 0.9,
           widthFactor: 0.8,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(imagepath),
-              Flexible(
-                child: Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  style: cardtitle,
-                ),
-              ),
-              Flexible(
-                child: Text(
-                  subtitle,
-                  overflow: TextOverflow.ellipsis,
-                  style: cardsubtitle,
-                  maxLines: 3,
-                ),
-              ),
-            ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: constraints.maxHeight / 1.7,
+                    width: constraints.maxWidth,
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: Image.asset(imagepath),
+                    ),
+                  ),
+                  Flexible(
+                    child: Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      style: cardtitle,
+                    ),
+                  ),
+                  Flexible(
+                    child: Text(
+                      subtitle,
+                      overflow: TextOverflow.ellipsis,
+                      style: cardsubtitle,
+                      maxLines: 3,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
