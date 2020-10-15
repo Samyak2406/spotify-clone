@@ -38,6 +38,7 @@ class homepage extends StatelessWidget {
                         ),
                         Text(
                           "PLAYLISTS",
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.grey.shade400,
                             fontSize: 12,

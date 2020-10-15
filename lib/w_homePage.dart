@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
+
+import 'constants.dart';
 
 class homesidetiles extends StatelessWidget {
   var icon;
@@ -47,10 +50,10 @@ class homesidetiles2 extends StatelessWidget {
           Container(
             height: 30,
             width: 30,
-            color: Colors.grey,
+            color: icon==LineIcons.heart ? Colors.blue:Colors.grey,
             child: Icon(
               icon,
-              color: Colors.black,
+              color:  icon==LineIcons.heart ? Colors.grey.shade200:Colors.black,
               size: 20,
             ),
           ),
