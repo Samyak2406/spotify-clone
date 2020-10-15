@@ -8,3 +8,10 @@ var log = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w500,
 );
+
+var sidebar =TextStyle(
+  color: Colors.grey,
+  fontSize: 15,
+  fontWeight: FontWeight.w600,
+
+);
