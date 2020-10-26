@@ -6,29 +6,39 @@ import 'constants.dart';
 class homesidetiles extends StatelessWidget {
   var icon;
   var text;
+  bool selected;
 
-  homesidetiles(this.icon, this.text);
+  homesidetiles(this.icon, this.text,this.selected);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
       height: 40,
       width: double.infinity,
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            color: Colors.grey,
-            size: 30,
-          ),
-          Flexible(
-            child: Text(
-              "   " + text,
-              style: sidebar,
-              overflow: TextOverflow.ellipsis,
+      decoration: BoxDecoration(
+        color: selected? Color(0xff282828): Colors.white.withOpacity(0),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 0.8,
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: selected?Colors.white:Colors.grey,
+              size: 30,
             ),
-          ),
-        ],
+            Flexible(
+              child: Text(
+                "   " + text,
+                style: selected?selectedSidebar:sidebar,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -37,35 +47,45 @@ class homesidetiles extends StatelessWidget {
 class homesidetiles2 extends StatelessWidget {
   var icon;
   var text;
+  bool selected;
 
-  homesidetiles2(this.icon, this.text);
+  homesidetiles2(this.icon, this.text,this.selected);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: selected?  Color(0xff282828): Colors.white.withOpacity(0),
+        borderRadius: BorderRadius.circular(5),
+      ),
       height: 40,
       width: double.infinity,
-      child: Row(
-        children: [
-          Container(
-            height: 30,
-            width: 30,
-            color: icon == LineIcons.heart ? Colors.blue : Colors.grey,
-            child: Icon(
-              icon,
-              color:
-                  icon == LineIcons.heart ? Colors.grey.shade200 : Colors.black,
-              size: 20,
+      child: FractionallySizedBox(
+        heightFactor: 1,
+        widthFactor: 0.8,
+        child: Row(
+          children: [
+            Container(
+              height: 30,
+              width: 30,
+              color: icon == LineIcons.heart ? Colors.blue : Colors.grey,
+              child: Icon(
+                icon,
+                color:
+                    icon == LineIcons.heart ? Colors.grey.shade200 : Colors.black,
+                size: 20,
+              ),
             ),
-          ),
-          Flexible(
-            child: Text(
-              "   " + text,
-              style: sidebar,
-              overflow: TextOverflow.ellipsis,
+            Flexible(
+              child: Text(
+                "   " + text,
+                style: sidebar,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -79,7 +99,7 @@ class appBar extends StatelessWidget {
       height: AppBar().preferredSize.height,
       width: double.infinity,
       child: FractionallySizedBox(
-        heightFactor: 0.8,
+        heightFactor: 0.6,
         widthFactor: 0.95,
         child: Center(
           child: Row(
@@ -104,14 +124,24 @@ class appBar extends StatelessWidget {
                 children: [
                   Text(
                     "SIGN UP",
-                    style: log,
+                    style: sign,
                   ),
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    "LOG IN",
-                    style: log,
+                  Container(
+                    padding: EdgeInsets.only(left: 35,right: 35),
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white
+                    ),
+                    child: Center(
+                      child: Text(
+                        "LOG IN",
+                        style: log,
+                      ),
+                    ),
                   )
                 ],
               ),
