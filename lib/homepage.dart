@@ -14,6 +14,10 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
 
+    List<bool> isSelected=[
+      true,false,false,false,false
+    ];
+
   List<songOuter> songs =[
     songOuter("images/kabira.jpg","Kabira","Tochi Raina, Rekha Bhardwaj"),
     songOuter("images/bekhayali.jpg","Kabir Singh","Sachet Tandon"),
@@ -61,7 +65,7 @@ class _homepageState extends State<homepage> {
       body: SafeArea(
         child: Row(
           children: [
-            no1(),
+            no1(isSelected),
             Expanded(
               flex: 6,
               child: Stack(
@@ -181,6 +185,10 @@ class _homepageState extends State<homepage> {
 
 
 class no1 extends StatelessWidget {
+  List<bool> isSelected;
+
+  no1(this.isSelected);
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -188,7 +196,7 @@ class no1 extends StatelessWidget {
         color: leftbar,
         child: FractionallySizedBox(
           heightFactor: 1,
-          widthFactor: 0.8,
+//          widthFactor: 0.8,
           child: Center(
             child: ListView(
               children: [
@@ -198,30 +206,37 @@ class no1 extends StatelessWidget {
                   child: FractionallySizedBox(
                     heightFactor: 0.85,
                     widthFactor: 0.8,
-                    child: Image.asset("images/logo.png"),
+                    child: FractionallySizedBox(
+                      heightFactor: 1,
+                        widthFactor: 0.8,
+                        child: Image.asset("images/logo.png"),
+                    ),
                   ),
                 ),
-                homesidetiles(Icons.home,"Home"),
-                homesidetiles(Icons.search,"Search"),
-                homesidetiles(Icons.library_add,"Library"),
+                homesidetiles(Icons.home,"Home",isSelected[0]),
+                homesidetiles(Icons.search,"Search",isSelected[1]),
+                homesidetiles(Icons.library_add,"Library",isSelected[2]),
                 SizedBox(
                   height: 25,
                 ),
-                Text(
-                  "PLAYLISTS",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.grey.shade400,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1.2,
+                FractionallySizedBox(
+                  widthFactor: 0.8,
+                  child: Text(
+                    "PLAYLISTS",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.grey.shade400,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.2,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                homesidetiles2(Icons.add,"Createt PlayList"),
-                homesidetiles2(LineIcons.heart,"Liked Songs"),
+                homesidetiles2(Icons.add,"Create PlayList",isSelected[3]),
+                homesidetiles2(LineIcons.heart,"Liked Songs",isSelected[4]),
               ],
             ),
           ),
