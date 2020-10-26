@@ -92,10 +92,13 @@ class homesidetiles2 extends StatelessWidget {
 }
 
 class appBar extends StatelessWidget {
+  var opacity;
+  appBar(this.opacity);
+  
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: topbar,
+      color: Colors.red.withOpacity(opacity),
       height: AppBar().preferredSize.height,
       width: double.infinity,
       child: FractionallySizedBox(
