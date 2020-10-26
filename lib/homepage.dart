@@ -13,6 +13,17 @@ class homepage extends StatefulWidget {
 
 
 class _homepageState extends State<homepage> {
+   ScrollController _scrollController;
+   var swipeUpOpacity=0.2;
+
+   @override
+   void initState() {
+     super.initState();
+     _scrollController = ScrollController(
+//       initialScrollOffset: 0,
+     );
+     _scrollController.addListener(scrollFader);
+   }
 
     List<bool> isSelected=[
       true,false,false,false,false
@@ -58,6 +69,18 @@ class _homepageState extends State<homepage> {
     return gridcount;
   }
 
+   void scrollFader(){
+    setState(() {
+      if (_scrollController.offset>60){
+        swipeUpOpacity=1;
+      }
+      else{
+        swipeUpOpacity=(_scrollController.offset)/60;
+      }
+//      print(swipeUpOpacity);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +100,7 @@ class _homepageState extends State<homepage> {
                       child: Transform.translate(
                         offset: Offset(0, AppBar().preferredSize.height),
                         child: ListView(
+                          controller: _scrollController,
                           children: [
                             Container(
                               padding: EdgeInsets.symmetric(vertical: 15),
@@ -172,7 +196,7 @@ class _homepageState extends State<homepage> {
                       ),
                     ),
                   ),
-                  appBar(),
+                  appBar(swipeUpOpacity),
                 ],
               ),
             ),
