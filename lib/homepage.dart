@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'package:line_icons/line_icons.dart';
 import 'w_homePage.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 class homepage extends StatefulWidget {
   static const id = "homepage";
@@ -13,6 +16,10 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   ScrollController _scrollController;
   var swipeUpOpacity = 0.001;
+//  AudioPlayer _audioPlayer=AudioPlayer();
+//  AudioCache audioCache=AudioCache();
+  final assetsAudioPlayer = AssetsAudioPlayer();
+
 
   @override
   void initState() {
@@ -77,6 +84,22 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.play_arrow,
+        ),
+        onPressed: (){
+          print("Pressed");
+          assetsAudioPlayer.open(
+            Audio("songs/lovely.mp3"),
+            autoStart: true,
+          );
+//          assetsAudioPlayer.play();
+//        AssetsAudioPlayer.playAndForget(
+//          Audio("songs/lovely.mp3"),
+//        );
+        },
+      ),
       backgroundColor: bgcolor,
       body: SafeArea(
         child: Row(
@@ -97,32 +120,35 @@ class _homepageState extends State<homepage> {
                           slivers: [
                             SliverList(
                               delegate: SliverChildListDelegate([
-                                Container(
-                                  padding: EdgeInsets.symmetric(vertical: 15),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "For Your Listening Pleasure!",
-                                        style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.white,
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
+                                FittedBox(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "For Your Listening Pleasure!",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            decoration: TextDecoration.underline,
+                                            color: Colors.white,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "SEE ALL",
-                                        style: TextStyle(
-                                          letterSpacing: 1.5,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 11,
-                                          color: Colors.grey,
+                                        Text(
+                                          "SEE ALL",
+                                          style: TextStyle(
+                                            letterSpacing: 1.5,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 11,
+                                            color: Colors.grey,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ]),
