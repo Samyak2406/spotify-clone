@@ -1,7 +1,12 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-
+import 'package:hovering/hovering.dart';
 import 'constants.dart';
+
+AudioPlayer _audioPlayer=AudioPlayer();
+
+
 
 class homesidetiles extends StatelessWidget {
   var icon;
@@ -157,56 +162,124 @@ class appBar extends StatelessWidget {
   }
 }
 
-class songcard extends StatelessWidget {
+class songcard extends StatefulWidget {
   String imagepath, title, subtitle;
 
   songcard(this.imagepath, this.title, this.subtitle);
 
   @override
+  _songcardState createState() => _songcardState();
+}
+
+class _songcardState extends State<songcard> {
+  double ops=0;
+
+  @override
   Widget build(BuildContext context) {
+    Color defColor=Color(0xff171717);
     return Container(
-      child: Center(
-        child: FractionallySizedBox(
-          heightFactor: 0.9,
-          widthFactor: 0.8,
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: constraints.maxHeight / 1.7,
-                    width: constraints.maxWidth,
-                    child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: Image.asset(imagepath),
+      child: MouseRegion(
+        onExit: (_){
+          setState(() {
+            defColor=Color(0xff171717);
+          });
+        },
+        onEnter: (_){
+          print("in");
+          setState(() {
+            defColor=Color(0xff272727);
+          });
+        },
+        child: Center(
+          child: FractionallySizedBox(
+            heightFactor: 0.9,
+            widthFactor: 0.8,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      children: [
+                        SizedBox(
+                          height: constraints.maxHeight / 1.7,
+                          width: constraints.maxWidth,
+                          child: FittedBox(
+                            fit: BoxFit.fill,
+                            child: Image.asset(widget.imagepath),
+                          ),
+                        ),
+                        Positioned(
+                          child: GestureDetector(
+                            onTap: (){
+                              _audioPlayer.play(
+                                  "songs/lovely.mp3"
+                              );
+                            },
+                            child: HoverContainer(
+                              hoverDecoration: BoxDecoration(
+                                color: Color(0xff1DB954),
+                                shape: BoxShape.circle,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0x001DB954),
+                                shape: BoxShape.circle,
+                              ),
+                              child: AnimatedContainer(
+                                duration: Duration(milliseconds: 3000),
+                                height: 50,
+                                width: 50,
+                                child: MouseRegion(
+                                  onEnter: (_){
+                                    setState(() {
+                                      ops=1;
+                                    });
+                                  },
+                                  onExit: (_){
+                                    setState(() {
+                                      ops=0;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.white.withOpacity(ops),
+                                  ),
+                                ),
+
+                              ),
+                            ),
+                          ),
+                          bottom: 10,
+                          right: 10,
+                        )
+                      ],
                     ),
-                  ),
-                  Flexible(
-                    child: Text(
-                      title,
-                      overflow: TextOverflow.ellipsis,
-                      style: cardtitle,
+                    Flexible(
+                      child: Text(
+                        widget.title,
+                        overflow: TextOverflow.ellipsis,
+                        style: cardtitle,
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: Text(
-                      subtitle,
-                      overflow: TextOverflow.ellipsis,
-                      style: cardsubtitle,
-                      maxLines: 3,
+                    Flexible(
+                      child: Text(
+                        widget.subtitle,
+                        overflow: TextOverflow.ellipsis,
+                        style: cardsubtitle,
+                        maxLines: 3,
+                      ),
                     ),
-                  ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Color(0xff171717),
+        color: defColor,
       ),
     );
   }
