@@ -80,13 +80,13 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-        _audioPlayer.play(
-          "songs/lovely.mp3"
-        );
-        }
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: (){
+//        _audioPlayer.play(
+//          "songs/lovely.mp3"
+//        );
+//        }
+//      ),
       backgroundColor: bgcolor,
       body: SafeArea(
         child: Row(
