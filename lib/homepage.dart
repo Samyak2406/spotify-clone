@@ -120,15 +120,15 @@ class _homepageState extends State<homepage> {
                           slivers: [
                             SliverList(
                               delegate: SliverChildListDelegate([
-                                FittedBox(
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 15),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
+                                Container(
+                                  padding: EdgeInsets.symmetric(vertical: 15),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
                                           "For Your Listening Pleasure!",
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -138,17 +138,17 @@ class _homepageState extends State<homepage> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        Text(
-                                          "SEE ALL",
-                                          style: TextStyle(
-                                            letterSpacing: 1.5,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 11,
-                                            color: Colors.grey,
-                                          ),
+                                      ),
+                                      Text(
+                                        "SEE ALL",
+                                        style: TextStyle(
+                                          letterSpacing: 1.5,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 11,
+                                          color: Colors.grey,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ]),
