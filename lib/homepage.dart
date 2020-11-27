@@ -3,8 +3,7 @@ import 'constants.dart';
 import 'package:line_icons/line_icons.dart';
 import 'w_homePage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:audioplayers/audio_cache.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
+
 
 class homepage extends StatefulWidget {
   static const id = "homepage";
@@ -16,10 +15,7 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   ScrollController _scrollController;
   var swipeUpOpacity = 0.001;
-//  AudioPlayer _audioPlayer=AudioPlayer();
-//  AudioCache audioCache=AudioCache();
-  final assetsAudioPlayer = AssetsAudioPlayer();
-
+  AudioPlayer _audioPlayer=AudioPlayer();
 
   @override
   void initState() {
@@ -85,20 +81,11 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.play_arrow,
-        ),
         onPressed: (){
-          print("Pressed");
-          assetsAudioPlayer.open(
-            Audio("songs/lovely.mp3"),
-            autoStart: true,
-          );
-//          assetsAudioPlayer.play();
-//        AssetsAudioPlayer.playAndForget(
-//          Audio("songs/lovely.mp3"),
-//        );
-        },
+        _audioPlayer.play(
+          "songs/lovely.mp3"
+        );
+        }
       ),
       backgroundColor: bgcolor,
       body: SafeArea(
