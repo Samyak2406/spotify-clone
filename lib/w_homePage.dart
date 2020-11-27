@@ -97,7 +97,8 @@ class appBar extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 200),
       color: Colors.red.withOpacity(opacity),
       height: AppBar().preferredSize.height,
       width: double.infinity,
