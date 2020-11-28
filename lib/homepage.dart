@@ -26,6 +26,13 @@ class _homepageState extends State<homepage> {
     _scrollController.addListener(scrollFader);
   }
 
+  @override
+  void dispose(){
+    super.dispose();
+    _scrollController.dispose();
+    _audioPlayer.dispose();
+  }
+
   List<bool> isSelected = [true, false, false, false, false];
 
   List<songOuter> songs = [
@@ -103,6 +110,7 @@ class _homepageState extends State<homepage> {
                       child: Transform.translate(
                         offset: Offset(0, AppBar().preferredSize.height),
                         child: CustomScrollView(
+                          physics: BouncingScrollPhysics(),
                           controller: _scrollController,
                           slivers: [
                             SliverList(
@@ -143,7 +151,7 @@ class _homepageState extends State<homepage> {
                             SliverGrid(
                               gridDelegate:
                                   SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 275.0,
+                                maxCrossAxisExtent: 205.0,
                                 mainAxisSpacing: 20.0,
                                 crossAxisSpacing: 20.0,
                                 childAspectRatio: 0.7,
@@ -196,7 +204,7 @@ class _homepageState extends State<homepage> {
                             SliverGrid(
                               gridDelegate:
                               SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 275.0,
+                                maxCrossAxisExtent: 205.0,
                                 mainAxisSpacing: 20.0,
                                 crossAxisSpacing: 20.0,
                                 childAspectRatio: 0.7,
