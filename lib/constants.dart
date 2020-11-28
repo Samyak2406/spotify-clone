@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+String pwd="";
+String userEmail="";
+bool Cauth=false;
+
 var leftbar = Color(0xff040404);
 var topbar = Color(0xff090909);
 var bgcolor = Color(0xff121212);

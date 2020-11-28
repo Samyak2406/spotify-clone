@@ -1,14 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import "package:firebase_auth/firebase_auth.dart";
+import 'package:spotify/homepage.dart';
 import 'constants.dart';
 
 class signIn extends StatelessWidget {
   static const id = "signIn";
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: ListView(
+//          shrinkWrap: true,
           children: [
             SizedBox(
               height: 50,
@@ -49,6 +55,7 @@ class signIn extends StatelessWidget {
                   child: TextField(
                     onChanged: (Temail){
 //                    TODO:
+                    userEmail=Temail;
                     },
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
@@ -95,6 +102,7 @@ class signIn extends StatelessWidget {
 
                     onChanged: (Tpwd){
 //                    TODO:
+                    pwd=Tpwd;
                     },
                     obscureText: true,
                     cursorColor: Colors.black,
@@ -116,9 +124,87 @@ class signIn extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 50,),
+                Transform.translate(
+                  offset: Offset(0,0),
+                  child: loginBox(_auth)
+                )
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class loginBox extends StatefulWidget {
+  FirebaseAuth _auth;
+  loginBox(this._auth);
+  @override
+  _loginBoxState createState() => _loginBoxState();
+
+}
+
+class _loginBoxState extends State<loginBox> {
+
+
+  var greens=Color(0xff15883E);
+  Future login() async {
+//    print(userEmail+"  "+pwd);
+    try {
+      final UserCredential userCredential = await widget._auth
+          .createUserWithEmailAndPassword(
+        email: userEmail,
+        password: pwd,
+      );
+//      print(userCredential);
+    Cauth=true;
+    Navigator.pushNamed(context, homepage.id);
+    }
+    catch(e){
+//      print("_");
+      return false;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_){
+        setState(() {
+          greens=Colors.green;
+        });
+      },
+      onExit: (_){
+        setState(() {
+          greens=Color(0xff15883E);
+        });
+      },
+      child: GestureDetector(
+        onTap: (){
+          //LOG IN
+           login();
+        },
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          width: 200,
+          height: 50,
+          child: Center(
+            child: Text(
+              "SIGN UP",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.5,
+              ),
+            ),
+          ),
+          decoration: BoxDecoration(
+            color: greens,
+            borderRadius: BorderRadius.circular(50),
+          ),
         ),
       ),
     );

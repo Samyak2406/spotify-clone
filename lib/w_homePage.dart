@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:hovering/hovering.dart';
 import 'constants.dart';
+import 'signIn.dart';
 
 AudioPlayer _audioPlayer=AudioPlayer();
 
@@ -129,26 +130,36 @@ class appBar extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
+              Cauth?Text(userEmail,style: sign,):Row(
                 children: [
-                  Text(
-                    "SIGN UP",
-                    style: sign,
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, signIn.id);
+                    },
+                    child: Text(
+                      "SIGN UP",
+                      style: sign,
+                    ),
                   ),
                   SizedBox(
                     width: 15,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(left: 35,right: 35),
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white
-                    ),
-                    child: Center(
-                      child: Text(
-                        "LOG IN",
-                        style: log,
+                  GestureDetector(
+                    onTap: (){
+                      //TODO:
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(left: 35,right: 35),
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.white
+                      ),
+                      child: Center(
+                        child: Text(
+                          "LOG IN",
+                          style: log,
+                        ),
                       ),
                     ),
                   )
