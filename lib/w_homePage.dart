@@ -1,9 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:hovering/hovering.dart';
 import 'constants.dart';
 import 'signIn.dart';
+import 'logIn.dart';
 
 AudioPlayer _audioPlayer=AudioPlayer();
 
@@ -146,7 +146,7 @@ class appBar extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                      //TODO:
+                      Navigator.pushNamed(context, logIn.id);
                     },
                     child: Container(
                       padding: EdgeInsets.only(left: 35,right: 35),
@@ -185,7 +185,7 @@ class songcard extends StatefulWidget {
 class _songcardState extends State<songcard> {
   double ops=0;
   Color defColor=Color(0xff171717);
-
+  bool spy=false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -193,6 +193,7 @@ class _songcardState extends State<songcard> {
         onExit: (_){
           setState(() {
             defColor=Color(0xff171717);
+            spy=false;
 //            print("Out");
           });
         },
@@ -200,6 +201,7 @@ class _songcardState extends State<songcard> {
 //          print("in");
           setState(() {
             defColor=Color(0xff272727);
+            spy=true;
           });
         },
         child: Center(
@@ -229,37 +231,19 @@ class _songcardState extends State<songcard> {
                                   "songs/lovely.mp3"
                               );
                             },
-                            child: HoverContainer(
-                              hoverDecoration: BoxDecoration(
-                                color: Color(0xff1DB954),
-                                shape: BoxShape.circle,
-                              ),
+                            child: AnimatedContainer(
                               decoration: BoxDecoration(
-                                color: Color(0x001DB954),
                                 shape: BoxShape.circle,
+                                color: !spy?Colors.white.withOpacity(0):Colors.green.withOpacity(1),
                               ),
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 3000),
-                                height: 50,
-                                width: 50,
-                                child: MouseRegion(
-                                  onEnter: (_){
-                                    setState(() {
-                                      ops=1;
-                                    });
-                                  },
-                                  onExit: (_){
-                                    setState(() {
-                                      ops=0;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white.withOpacity(ops),
-                                  ),
-                                ),
+                              duration: Duration(milliseconds: 350),
+                              height: 50,
+                              width: 50,
+                              child: Icon(
+                                Icons.play_arrow,
+                                color: spy? Colors.white.withOpacity(1):Colors.white.withOpacity(0),
+                              ),
 
-                              ),
                             ),
                           ),
                           bottom: 10,
@@ -290,7 +274,7 @@ class _songcardState extends State<songcard> {
         ),
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(5),
         color: defColor,
       ),
     );

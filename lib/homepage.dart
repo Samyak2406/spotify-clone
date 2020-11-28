@@ -86,7 +86,9 @@ class _homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async => true,
+      child: Scaffold(
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: (){
 //        _audioPlayer.play(
@@ -94,44 +96,98 @@ class _homepageState extends State<homepage> {
 //        );
 //        }
 //      ),
-      backgroundColor: bgcolor,
-      body: SafeArea(
-        child: Row(
-          children: [
-            no1(isSelected),
-            Expanded(
-              flex: 6,
-              child: Stack(
-                children: [
-                  Center(
-                    child: FractionallySizedBox(
-                      heightFactor: 1,
-                      widthFactor: 0.95,
-                      child: Transform.translate(
-                        offset: Offset(0, AppBar().preferredSize.height),
-                        child: CustomScrollView(
-                          physics: BouncingScrollPhysics(),
-                          controller: _scrollController,
-                          slivers: [
-                            SliverList(
-                              delegate: SliverChildListDelegate([
-                                Container(
-                                  padding: EdgeInsets.symmetric(vertical: 15),
-                                  child: Row(
+        backgroundColor: bgcolor,
+        body: SafeArea(
+          child: Row(
+            children: [
+              no1(isSelected),
+              Expanded(
+                flex: 6,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: FractionallySizedBox(
+                        heightFactor: 1,
+                        widthFactor: 0.95,
+                        child: Transform.translate(
+                          offset: Offset(0, AppBar().preferredSize.height),
+                          child: CustomScrollView(
+                            physics: BouncingScrollPhysics(),
+                            controller: _scrollController,
+                            slivers: [
+                              SliverList(
+                                delegate: SliverChildListDelegate([
+                                  Container(
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "For Your Listening Pleasure!",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              decoration: TextDecoration.underline,
+                                              color: Colors.white,
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          "SEE ALL",
+                                          style: TextStyle(
+                                            letterSpacing: 1.5,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 11,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ]),
+                              ),
+                              SliverGrid(
+                                gridDelegate:
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 205.0,
+                                  mainAxisSpacing: 20.0,
+                                  crossAxisSpacing: 20.0,
+                                  childAspectRatio: 0.7,
+                                ),
+                                delegate: SliverChildBuilderDelegate(
+                                  (BuildContext context, int index) {
+                                    return Container(
+                                      alignment: Alignment.center,
+                                      child: songcard(
+                                          songs[index].path,
+                                          songs[index].title,
+                                          songs[index].subtitle),
+                                    );
+                                  },
+                                  childCount: songs.length,
+                                ),
+                              ),
+                              SliverList(
+                                delegate: SliverChildListDelegate([
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Expanded(
-                                        child: Text(
-                                          "For Your Listening Pleasure!",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            decoration: TextDecoration.underline,
-                                            color: Colors.white,
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                      Text(
+                                        "Charts",
+                                        style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       Text(
@@ -145,93 +201,40 @@ class _homepageState extends State<homepage> {
                                       ),
                                     ],
                                   ),
+                                ]),
+                              ),
+                              SliverGrid(
+                                gridDelegate:
+                                SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 205.0,
+                                  mainAxisSpacing: 20.0,
+                                  crossAxisSpacing: 20.0,
+                                  childAspectRatio: 0.7,
                                 ),
-                              ]),
-                            ),
-                            SliverGrid(
-                              gridDelegate:
-                                  SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 205.0,
-                                mainAxisSpacing: 20.0,
-                                crossAxisSpacing: 20.0,
-                                childAspectRatio: 0.7,
-                              ),
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  return Container(
-                                    alignment: Alignment.center,
-                                    child: songcard(
-                                        songs[index].path,
-                                        songs[index].title,
-                                        songs[index].subtitle),
-                                  );
-                                },
-                                childCount: songs.length,
-                              ),
-                            ),
-                            SliverList(
-                              delegate: SliverChildListDelegate([
-                                SizedBox(
-                                  height: 20,
+                                delegate: SliverChildBuilderDelegate(
+                                      (BuildContext context, int index) {
+                                    return Container(
+                                      alignment: Alignment.center,
+                                      child: songcard(
+                                          songs[index].path,
+                                          songs[index].title,
+                                          songs[index].subtitle),
+                                    );
+                                  },
+                                  childCount: songs.length,
                                 ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Charts",
-                                      style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.white,
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      "SEE ALL",
-                                      style: TextStyle(
-                                        letterSpacing: 1.5,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 11,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ]),
-                            ),
-                            SliverGrid(
-                              gridDelegate:
-                              SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 205.0,
-                                mainAxisSpacing: 20.0,
-                                crossAxisSpacing: 20.0,
-                                childAspectRatio: 0.7,
                               ),
-                              delegate: SliverChildBuilderDelegate(
-                                    (BuildContext context, int index) {
-                                  return Container(
-                                    alignment: Alignment.center,
-                                    child: songcard(
-                                        songs[index].path,
-                                        songs[index].title,
-                                        songs[index].subtitle),
-                                  );
-                                },
-                                childCount: songs.length,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  appBar(swipeUpOpacity),
-                ],
+                    appBar(swipeUpOpacity),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
