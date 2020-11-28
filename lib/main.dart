@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spotify/homepage.dart';
 import 'package:spotify/signIn.dart';
 import 'homepage.dart';
+import 'logIn.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         homepage.id:(context)=>homepage(),
         signIn.id:(context)=>signIn(),
+        logIn.id:(context)=>logIn()
       },
     );
   }

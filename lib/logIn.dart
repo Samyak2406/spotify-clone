@@ -1,14 +1,11 @@
-//Here is the code of Sign Up
-//There is typo in file name
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:spotify/homepage.dart';
 import 'constants.dart';
 
-class signIn extends StatelessWidget {
-  static const id = "signIn";
+class logIn extends StatelessWidget {
+  static const id = "logIn";
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
@@ -43,7 +40,7 @@ class signIn extends StatelessWidget {
                 children: [
                   Transform.translate(
                     offset: Offset(
-                      -175,0
+                        -175,0
                     ),
                     child: Text(
                       "Email Id",
@@ -60,7 +57,7 @@ class signIn extends StatelessWidget {
                     child: TextField(
                       onChanged: (Temail){
 //                    TODO:
-                      userEmail=Temail;
+                        userEmail=Temail;
                       },
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
@@ -107,7 +104,7 @@ class signIn extends StatelessWidget {
 
                       onChanged: (Tpwd){
 //                    TODO:
-                      pwd=Tpwd;
+                        pwd=Tpwd;
                       },
                       obscureText: true,
                       cursorColor: Colors.black,
@@ -131,8 +128,8 @@ class signIn extends StatelessWidget {
                   ),
                   SizedBox(height: 50,),
                   Transform.translate(
-                    offset: Offset(0,0),
-                    child: loginBox(_auth)
+                      offset: Offset(0,0),
+                      child: loginBox(_auth)
                   )
                 ],
               ),
@@ -158,19 +155,19 @@ class _loginBoxState extends State<loginBox> {
 
   var greens=Color(0xff15883E);
   Future login() async {
-//    print(userEmail+"  "+pwd);
+    print(userEmail+"  "+pwd);
     try {
       final UserCredential userCredential = await widget._auth
-          .createUserWithEmailAndPassword(
+          .signInWithEmailAndPassword(
         email: userEmail,
         password: pwd,
       );
-//      print(userCredential);
-    Cauth=true;
-    Navigator.pushNamed(context, homepage.id);
+      print(userCredential);
+      Cauth=true;
+      Navigator.pushNamed(context, homepage.id);
     }
     catch(e){
-//      print("_");
+      print("_");
       return false;
     }
   }
@@ -191,7 +188,7 @@ class _loginBoxState extends State<loginBox> {
       child: GestureDetector(
         onTap: (){
           //LOG IN
-           login();
+          login();
         },
         child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
@@ -199,11 +196,11 @@ class _loginBoxState extends State<loginBox> {
           height: 50,
           child: Center(
             child: Text(
-              "SIGN UP",
+              "LOG IN",
               style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.5,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 16.5,
               ),
             ),
           ),
