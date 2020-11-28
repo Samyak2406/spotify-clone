@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/homepage.dart';
+import 'package:spotify/signIn.dart';
 import 'homepage.dart';
 
 void main() {
@@ -11,9 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: homepage.id,
+      initialRoute: signIn.id,
       routes: {
         homepage.id:(context)=>homepage(),
+        signIn.id:(context)=>signIn(),
       },
     );
   }

@@ -173,19 +173,20 @@ class songcard extends StatefulWidget {
 
 class _songcardState extends State<songcard> {
   double ops=0;
+  Color defColor=Color(0xff171717);
 
   @override
   Widget build(BuildContext context) {
-    Color defColor=Color(0xff171717);
     return Container(
       child: MouseRegion(
         onExit: (_){
           setState(() {
             defColor=Color(0xff171717);
+//            print("Out");
           });
         },
         onEnter: (_){
-          print("in");
+//          print("in");
           setState(() {
             defColor=Color(0xff272727);
           });
