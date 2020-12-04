@@ -237,8 +237,8 @@ class _songcardState extends State<songcard> {
                                 color: !spy?Colors.white.withOpacity(0):Colors.green.withOpacity(1),
                               ),
                               duration: Duration(milliseconds: 350),
-                              height: 50,
-                              width: 50,
+                              height: 40,
+                              width: 40,
                               child: Icon(
                                 Icons.play_arrow,
                                 color: spy? Colors.white.withOpacity(1):Colors.white.withOpacity(0),

@@ -51,28 +51,6 @@ class _homepageState extends State<homepage> {
 
   int gridcount = 2;
 
-  int gridCounter(context) {
-    var width = MediaQuery.of(context).size.width;
-    if (width >= 1100) {
-      setState(() {
-        gridcount = 5;
-      });
-    } else if (width < 1100 && width >= 800) {
-      setState(() {
-        gridcount = 4;
-      });
-    } else if (width < 800 && width > 650) {
-      setState(() {
-        gridcount = 3;
-      });
-    } else {
-      setState(() {
-        gridcount = 2;
-      });
-    }
-    return gridcount;
-  }
-
   void scrollFader() {
     setState(() {
       if (_scrollController.offset > 60) {
@@ -89,13 +67,6 @@ class _homepageState extends State<homepage> {
     return WillPopScope(
       onWillPop: () async => true,
       child: Scaffold(
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: (){
-//        _audioPlayer.play(
-//          "songs/lovely.mp3"
-//        );
-//        }
-//      ),
         backgroundColor: bgcolor,
         body: SafeArea(
           child: Row(
