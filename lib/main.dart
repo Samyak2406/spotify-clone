@@ -3,6 +3,7 @@ import 'package:spotify/homepage.dart';
 import 'package:spotify/signIn.dart';
 import 'homepage.dart';
 import 'logIn.dart';
+import 'mylibrary.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,11 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: homepage.id,
+      initialRoute: mylibrary.id,
       routes: {
         homepage.id:(context)=>homepage(),
         signIn.id:(context)=>signIn(),
-        logIn.id:(context)=>logIn()
+        logIn.id:(context)=>logIn(),
+        mylibrary.id:(context)=>mylibrary(),
       },
     );
   }
