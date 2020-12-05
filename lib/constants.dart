@@ -13,6 +13,11 @@ var sign = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
+var tableTitle=TextStyle(
+  color: Colors.grey.shade300,
+  fontSize: 16,
+);
+
 var log = TextStyle(
   color: Colors.black,
   fontSize: 13,
@@ -55,3 +60,18 @@ class songOuter{
       this.subtitle
       );
 }
+
+List<songOuter> songs = [
+  songOuter("images/kabira.jpg", "Kabira", "Tochi Raina, Rekha Bhardwaj"),
+  songOuter("images/bekhayali.jpg", "Kabir Singh", "Sachet Tandon"),
+  songOuter("images/humnava mere.jpg", "Album Song", "Rocky-Shiv"),
+  songOuter("images/dilbechara.jpg", "Dil Bechara", "A. R. Rahman"),
+  songOuter("images/fihall.jpg", "Filhall", "B Praak"),
+  songOuter("images/pachtaoge.jpg", "Pachataoge", "Arijit Singh"),
+  songOuter("images/sunrahahai.jpg", "Aashiqui 2", "Ankit Tiwari"),
+  songOuter("images/thodi jagah.jpg", "Marjaavaan", "Arijit Singh"),
+  songOuter("images/valam.jpg", "Made in Chaina",
+      "Priya Saraiya, Sachin–Jigar, Arijit Singh"),
+  songOuter("images/khairiyat.jpg", "Chhichhore", "Arijit Singh"),
+];
+
