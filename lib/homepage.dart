@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/mylibrary.dart';
 import 'constants.dart';
 import 'package:line_icons/line_icons.dart';
 import 'w_homePage.dart';
 import 'package:audioplayers/audioplayers.dart';
-
 
 class homepage extends StatefulWidget {
   static const id = "homepage";
@@ -15,7 +15,7 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   ScrollController _scrollController;
   var swipeUpOpacity = 0.001;
-  AudioPlayer _audioPlayer=AudioPlayer();
+  AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _homepageState extends State<homepage> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     _scrollController.dispose();
     _audioPlayer.dispose();
@@ -91,7 +91,8 @@ class _homepageState extends State<homepage> {
                                   Container(
                                     padding: EdgeInsets.symmetric(vertical: 15),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -100,7 +101,8 @@ class _homepageState extends State<homepage> {
                                             "For Your Listening Pleasure!",
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                              decoration: TextDecoration.underline,
+                                              decoration:
+                                                  TextDecoration.underline,
                                               color: Colors.white,
                                               fontSize: 22,
                                               fontWeight: FontWeight.bold,
@@ -176,14 +178,14 @@ class _homepageState extends State<homepage> {
                               ),
                               SliverGrid(
                                 gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
                                   maxCrossAxisExtent: 205.0,
                                   mainAxisSpacing: 20.0,
                                   crossAxisSpacing: 20.0,
                                   childAspectRatio: 0.7,
                                 ),
                                 delegate: SliverChildBuilderDelegate(
-                                      (BuildContext context, int index) {
+                                  (BuildContext context, int index) {
                                     return Container(
                                       alignment: Alignment.center,
                                       child: songcard(
@@ -216,6 +218,7 @@ class no1 extends StatelessWidget {
   List<bool> isSelected;
 
   no1(this.isSelected);
+  void none() {}
 
   @override
   Widget build(BuildContext context) {
@@ -240,9 +243,30 @@ class no1 extends StatelessWidget {
                     ),
                   ),
                 ),
-                homesidetiles(Icons.home, "Home", isSelected[0]),
-                homesidetiles(Icons.search, "Search", isSelected[1]),
-                homesidetiles(Icons.library_add, "Library", isSelected[2]),
+                GestureDetector(
+                  onTap: () {
+                    isSelected[0]
+                        ? none()
+                        : Navigator.pushNamed(context, homepage.id);
+                  },
+                  child: homesidetiles(Icons.home, "Home", isSelected[0]),
+                ),
+                GestureDetector(
+                  onTap: () {
+//                    isSelected[1]?none():Navigator.pushNamed(context, homepage.id);
+//                  TODO: SearchPage
+                  },
+                  child: homesidetiles(Icons.search, "Search", isSelected[1]),
+                ),
+                GestureDetector(
+                    onTap: () {
+                      isSelected[2]
+                          ? none()
+                          : Navigator.pushNamed(context, mylibrary.id);
+                    },
+                    child: homesidetiles(
+                        Icons.library_add, "Library", isSelected[2]),
+                ),
                 SizedBox(
                   height: 25,
                 ),
@@ -262,8 +286,20 @@ class no1 extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                homesidetiles2(Icons.add, "Create PlayList", isSelected[3]),
-                homesidetiles2(LineIcons.heart, "Liked Songs", isSelected[4]),
+                GestureDetector(
+                  onTap: (){
+//                    isSelected[3]?none():Navigator.pushNamed(context, homepage.id);
+//                  TODO:
+                  },
+
+                    child: homesidetiles2(Icons.add, "Create PlayList", isSelected[3])),
+                GestureDetector(
+                  onTap: (){
+//                    isSelected[4]?none():Navigator.pushNamed(context, homepage.id);
+//                  TODO:
+                  },
+
+                    child: homesidetiles2(LineIcons.heart, "Liked Songs", isSelected[4])),
               ],
             ),
           ),
