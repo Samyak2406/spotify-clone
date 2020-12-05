@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify/homepage.dart';
+import 'package:spotify/widgets.dart';
 import 'constants.dart';
 
 class mylibrary extends StatelessWidget {
@@ -18,39 +19,44 @@ class mylibrary extends StatelessWidget {
       onWillPop: () async =>true,
       child: Scaffold(
         backgroundColor: bgcolor,
-        body: Row(
+        body: Stack(
           children: [
-            no1(
-                [false, false, true, false, false]
-            ),
-            Expanded(
-              flex: 6,
-              child: Padding(
-                padding: const EdgeInsets.only(top:28.0,left: 40),
-                child: ListView(
-                  children: [
-                    Text(
-                      "Playlists",
-                      style: TextStyle(
-//                decoration: TextDecoration.underline,
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Wrap(
-                      spacing: 10,
-                      alignment: WrapAlignment.start  ,
-                      runSpacing: 20,
+            Row(
+              children: [
+                no1(
+                    [false, false, true, false, false]
+                ),
+                Expanded(
+                  flex: 6,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top:28.0,left: 40),
+                    child: ListView(
                       children: [
-                        LikedBox(count),
+                        Text(
+                          "Playlists",
+                          style: TextStyle(
+//                decoration: TextDecoration.underline,
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Wrap(
+                          spacing: 10,
+                          alignment: WrapAlignment.start,
+                          runSpacing: 20,
+                          children: [
+                            LikedBox(count),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
+            playBar(),
           ],
         ),
       ),
@@ -142,7 +148,7 @@ class _LikedBoxState extends State<LikedBox> {
             right: 20,
             duration: Duration(milliseconds: 400),
             curve: Curves.fastOutSlowIn,
-            bottom: hvr?20:15,
+            bottom: hvr?20:-4,
             child: AnimatedContainer(
               curve: Curves.fastOutSlowIn,
               decoration: BoxDecoration(
