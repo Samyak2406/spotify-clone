@@ -224,7 +224,8 @@ class _songcardState extends State<songcard> {
                             child: Image.asset(widget.imagepath),
                           ),
                         ),
-                        Positioned(
+                        AnimatedPositioned(
+                          duration: Duration(milliseconds: 400),
                           child: GestureDetector(
                             onTap: (){
                               _audioPlayer.play(
@@ -246,7 +247,7 @@ class _songcardState extends State<songcard> {
 
                             ),
                           ),
-                          bottom: 10,
+                          bottom: spy?15:10,
                           right: 10,
                         )
                       ],
