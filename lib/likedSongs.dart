@@ -150,7 +150,7 @@ class _likedSongsState extends State<likedSongs> {
                 });
               },
               child: Icon(
-                Icons.bookmark_border,
+                LineIcons.heart,
                 color: Colors.green,
               ),
             ),
@@ -246,7 +246,7 @@ class _likedSongsState extends State<likedSongs> {
                           height: 20,
                         ),
                         Container(
-                          height: 1000,
+                          height: 800,
                           padding:
                               EdgeInsets.only(top: 50, left: 30, right: 30),
                           color: Colors.black54.withOpacity(0.3),

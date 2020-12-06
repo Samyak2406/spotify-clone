@@ -5,6 +5,7 @@ import 'w_homePage.dart';
 import 'likedSongs.dart';
 import 'mylibrary.dart';
 import 'package:line_icons/line_icons.dart';
+import 'search.dart';
 
 class playBar extends StatelessWidget {
   @override
@@ -106,8 +107,7 @@ class no1 extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-//                    isSelected[1]?none():Navigator.pushNamed(context, homepage.id);
-//                  TODO: SearchPage
+                    isSelected[1]?none():Navigator.pushNamed(context, search.id);
                   },
                   child: homesidetiles(Icons.search, "Search", isSelected[1]),
                 ),
@@ -126,7 +126,7 @@ class no1 extends StatelessWidget {
                 FractionallySizedBox(
                   widthFactor: 0.8,
                   child: Text(
-                    "PLAYLISTS",
+                    "Liked Songs",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Colors.grey.shade400,
@@ -139,13 +139,13 @@ class no1 extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                GestureDetector(
-                    onTap: (){
-//                    isSelected[3]?none():Navigator.pushNamed(context, homepage.id);
-//                  TODO:
-                    },
-
-                    child: homesidetiles2(Icons.add, "Create PlayList", isSelected[3])),
+//                GestureDetector(
+//                    onTap: (){
+////                    isSelected[3]?none():Navigator.pushNamed(context, homepage.id);
+////                  TODO:
+//                    },
+//
+//                    child: homesidetiles2(Icons.add, "Create PlayList", isSelected[3])),
                 GestureDetector(
                     onTap: (){
                       isSelected[4]?none():Navigator.pushNamed(context, likedSongs.id);
