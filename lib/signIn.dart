@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:spotify/homepage.dart';
 import 'constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 final _store=FirebaseFirestore.instance;
 
 class signIn extends StatelessWidget {
   static const id = "signIn";
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,6 @@ class signIn extends StatelessWidget {
                     child: TextField(
 
                       onChanged: (Tpwd){
-//                    TODO:
                       pwd=Tpwd;
                       },
                       obscureText: true,
@@ -182,6 +181,15 @@ class _loginBoxState extends State<loginBox> {
     }
     catch(e){
       print("_");
+      Fluttertoast.showToast(
+          msg: "Something Went Wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
       return false;
     }
   }

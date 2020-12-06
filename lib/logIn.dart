@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:firebase_auth/firebase_auth.dart";
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:spotify/homepage.dart';
 import 'constants.dart';
 
@@ -166,6 +167,15 @@ class _loginBoxState extends State<loginBox> {
     }
     catch(e){
       print("_");
+      Fluttertoast.showToast(
+          msg: "Something Went Wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
       return false;
     }
   }

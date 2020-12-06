@@ -228,7 +228,7 @@ class _likedSongsState extends State<likedSongs> {
                                       ),
                                     ),
                                     Text(
-                                      "=>" + userEmail,
+                                      "" + userEmail,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         color: Colors.white,

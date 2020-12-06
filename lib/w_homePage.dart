@@ -7,7 +7,6 @@ import 'constants.dart';
 import 'signIn.dart';
 import 'logIn.dart';
 
-AudioPlayer _audioPlayer=AudioPlayer();
 var _store=FirebaseFirestore.instance;
 
 class homesidetiles extends StatelessWidget {
@@ -200,27 +199,41 @@ class songcard extends StatefulWidget {
 }
 
 class _songcardState extends State<songcard> {
+  AudioPlayer _audioPlayer=AudioPlayer();
   double ops=0;
   bool fresh=true;
 
   Color defColor=Color(0xff171717);
   bool spy=false;
+
+  void setColor(xyz){
+    setState(() {
+      defColor=xyz;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: (){
 //        print("here");
+        setColor(Colors.green.shade600);
+        Future.delayed(Duration(milliseconds: 200),(){
+         setColor(Color(0xff171717));
+        });
         try{
           _store.collection(userEmail).doc(widget.i.toString()).update(
               {
                 "liked": 1,
               }
+
           );
         }catch(e){
 //          print(e);
         }
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 500),
         child: MouseRegion(
           onExit: (_){
             setState(() {
@@ -260,7 +273,6 @@ class _songcardState extends State<songcard> {
                             duration: Duration(milliseconds: 400),
                             child: GestureDetector(
                               onTap: (){
-
                                 setState(() {
                                  try{
                                    if(fresh==true){
@@ -288,7 +300,6 @@ class _songcardState extends State<songcard> {
                                   fresh?Icons.play_arrow:Icons.pause,
                                   color: spy? Colors.white.withOpacity(1):Colors.white.withOpacity(0),
                                 ),
-
                               ),
                             ),
                             bottom: spy?15:10,
