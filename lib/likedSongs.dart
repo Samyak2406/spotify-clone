@@ -282,7 +282,6 @@ class _likedSongsState extends State<likedSongs> {
                 )
               ],
             ),
-            playBar(),
           ],
         ),
       ),

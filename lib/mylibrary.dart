@@ -86,7 +86,6 @@ class _mylibraryState extends State<mylibrary> {
                 ),
               ],
             ),
-            playBar(),
           ],
         ),
       ),

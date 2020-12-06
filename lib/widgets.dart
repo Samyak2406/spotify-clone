@@ -7,58 +7,6 @@ import 'mylibrary.dart';
 import 'package:line_icons/line_icons.dart';
 import 'search.dart';
 
-class playBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Container(
-        padding: EdgeInsets.only(top: 20),
-        height: 100,
-        width: double.infinity,
-        color: Color(0xff282828),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.skip_previous,
-                  size: 22,
-                  color: Colors.white,
-                ),
-                hseparators(),
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white),
-                  ),
-                  height: 60,
-                  width: 60,
-                  child: Icon(
-                    Icons.play_arrow,
-                    size: 30,
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-                ),
-                hseparators(),
-                Icon(
-                  Icons.skip_next,
-                  size: 22,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class hseparators extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -139,13 +87,6 @@ class no1 extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-//                GestureDetector(
-//                    onTap: (){
-////                    isSelected[3]?none():Navigator.pushNamed(context, homepage.id);
-////                  TODO:
-//                    },
-//
-//                    child: homesidetiles2(Icons.add, "Create PlayList", isSelected[3])),
                 GestureDetector(
                     onTap: (){
                       isSelected[4]?none():Navigator.pushNamed(context, likedSongs.id);
