@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'constants.dart';
@@ -6,7 +7,7 @@ import 'signIn.dart';
 import 'logIn.dart';
 
 AudioPlayer _audioPlayer=AudioPlayer();
-
+var _store=FirebaseFirestore.instance;
 
 
 class homesidetiles extends StatelessWidget {
@@ -175,8 +176,9 @@ class appBar extends StatelessWidget {
 
 class songcard extends StatefulWidget {
   String imagepath, title, subtitle;
+  int i;
 
-  songcard(this.imagepath, this.title, this.subtitle);
+  songcard(this.i,this.imagepath, this.title, this.subtitle);
 
   @override
   _songcardState createState() => _songcardState();
@@ -184,99 +186,114 @@ class songcard extends StatefulWidget {
 
 class _songcardState extends State<songcard> {
   double ops=0;
+
   Color defColor=Color(0xff171717);
   bool spy=false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: MouseRegion(
-        onExit: (_){
-          setState(() {
-            defColor=Color(0xff171717);
-            spy=false;
+    return GestureDetector(
+      onDoubleTap: (){
+        print("here");
+        try{
+          _store.collection(userEmail).doc(widget.i.toString()).update(
+              {
+                "liked": 1,
+              }
+          );
+        }catch(e){
+//          print(e);
+        }
+      },
+      child: Container(
+        child: MouseRegion(
+          onExit: (_){
+            setState(() {
+              defColor=Color(0xff171717);
+              spy=false;
 //            print("Out");
-          });
-        },
-        onEnter: (_){
+            });
+          },
+          onEnter: (_){
 //          print("in");
-          setState(() {
-            defColor=Color(0xff272727);
-            spy=true;
-          });
-        },
-        child: Center(
-          child: FractionallySizedBox(
-            heightFactor: 0.9,
-            widthFactor: 0.8,
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        SizedBox(
-                          height: constraints.maxHeight / 1.7,
-                          width: constraints.maxWidth,
-                          child: FittedBox(
-                            fit: BoxFit.fill,
-                            child: Image.asset(widget.imagepath),
-                          ),
-                        ),
-                        AnimatedPositioned(
-                          duration: Duration(milliseconds: 400),
-                          child: GestureDetector(
-                            onTap: (){
-                              _audioPlayer.play(
-                                  "songs/lovely.mp3"
-                              );
-                            },
-                            child: AnimatedContainer(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: !spy?Colors.white.withOpacity(0):Colors.green.withOpacity(1),
-                              ),
-                              duration: Duration(milliseconds: 350),
-                              height: 40,
-                              width: 40,
-                              child: Icon(
-                                Icons.play_arrow,
-                                color: spy? Colors.white.withOpacity(1):Colors.white.withOpacity(0),
-                              ),
-
+            setState(() {
+              defColor=Color(0xff272727);
+              spy=true;
+            });
+          },
+          child: Center(
+            child: FractionallySizedBox(
+              heightFactor: 0.9,
+              widthFactor: 0.8,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: constraints.maxHeight / 1.7,
+                            width: constraints.maxWidth,
+                            child: FittedBox(
+                              fit: BoxFit.fill,
+                              child: Image.asset(widget.imagepath),
                             ),
                           ),
-                          bottom: spy?15:10,
-                          right: 10,
-                        )
-                      ],
-                    ),
-                    Flexible(
-                      child: Text(
-                        widget.title,
-                        overflow: TextOverflow.ellipsis,
-                        style: cardtitle,
+                          AnimatedPositioned(
+                            duration: Duration(milliseconds: 400),
+                            child: GestureDetector(
+                              onTap: (){
+                                _audioPlayer.play(
+                                    "songs/lovely.mp3"
+                                );
+                              },
+                              child: AnimatedContainer(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: !spy?Colors.white.withOpacity(0):Colors.green.withOpacity(1),
+                                ),
+                                duration: Duration(milliseconds: 350),
+                                height: 40,
+                                width: 40,
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  color: spy? Colors.white.withOpacity(1):Colors.white.withOpacity(0),
+                                ),
+
+                              ),
+                            ),
+                            bottom: spy?15:10,
+                            right: 10,
+                          )
+                        ],
                       ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        widget.subtitle,
-                        overflow: TextOverflow.ellipsis,
-                        style: cardsubtitle,
-                        maxLines: 3,
+                      Flexible(
+                        child: Text(
+                          widget.title,
+                          overflow: TextOverflow.ellipsis,
+                          style: cardtitle,
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              },
+                      Flexible(
+                        child: Text(
+                          widget.subtitle,
+                          overflow: TextOverflow.ellipsis,
+                          style: cardsubtitle,
+                          maxLines: 3,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: defColor,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: defColor,
+        ),
       ),
     );
   }
