@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-String pwd="";
-String userEmail="";
-bool Cauth=false;
+String pwd = "";
+String userEmail = "";
+bool Cauth = false;
 
 var leftbar = Color(0xff040404);
 var topbar = Color(0xff090909);
@@ -13,7 +13,7 @@ var sign = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
-var tableTitle=TextStyle(
+var tableTitle = TextStyle(
   color: Colors.grey.shade300,
   fontSize: 16,
 );
@@ -24,41 +24,38 @@ var log = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
-var sidebar =TextStyle(
+var sidebar = TextStyle(
   color: Colors.grey,
   fontSize: 15,
   fontWeight: FontWeight.w600,
 );
 
-var selectedSidebar =TextStyle(
+var selectedSidebar = TextStyle(
   color: Colors.white,
   fontSize: 15,
   fontWeight: FontWeight.w600,
 );
 
-var cardtitle =TextStyle(
+var cardtitle = TextStyle(
   color: Colors.white,
   fontSize: 14,
   letterSpacing: 1.2,
   fontWeight: FontWeight.w700,
 );
 
-var cardsubtitle =TextStyle(
+var cardsubtitle = TextStyle(
   color: Colors.grey,
   letterSpacing: 1.2,
   fontSize: 11,
   fontWeight: FontWeight.w400,
 );
 
-class songOuter{
+class songOuter {
   String path;
   String title;
   String subtitle;
-  songOuter(
-      this.path,
-      this.title,
-      this.subtitle
-      );
+
+  songOuter(this.path, this.title, this.subtitle);
 }
 
 List<songOuter> songs = [
@@ -74,4 +71,3 @@ List<songOuter> songs = [
       "Priya Saraiya, Sachin–Jigar, Arijit Singh"),
   songOuter("images/khairiyat.jpg", "Chhichhore", "Arijit Singh"),
 ];
-
