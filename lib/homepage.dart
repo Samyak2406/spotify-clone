@@ -37,7 +37,6 @@ class _homepageState extends State<homepage> {
 
   List<bool> isSelected = [true, false, false, false, false];
 
-
   int gridcount = 2;
 
   void scrollFader() {
@@ -80,7 +79,8 @@ class _homepageState extends State<homepage> {
                                   SliverList(
                                     delegate: SliverChildListDelegate([
                                       Container(
-                                        padding: EdgeInsets.symmetric(vertical: 15),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 15),
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
@@ -127,6 +127,7 @@ class _homepageState extends State<homepage> {
                                         return Container(
                                           alignment: Alignment.center,
                                           child: songcard(
+                                              index,
                                               songs[index].path,
                                               songs[index].title,
                                               songs[index].subtitle),
@@ -141,14 +142,16 @@ class _homepageState extends State<homepage> {
                                         height: 20,
                                       ),
                                       Row(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             "Charts",
                                             style: TextStyle(
-                                              decoration: TextDecoration.underline,
+                                              decoration:
+                                                  TextDecoration.underline,
                                               color: Colors.white,
                                               fontSize: 22,
                                               fontWeight: FontWeight.bold,
@@ -180,6 +183,7 @@ class _homepageState extends State<homepage> {
                                         return Container(
                                           alignment: Alignment.center,
                                           child: songcard(
+                                              index,
                                               songs[index].path,
                                               songs[index].title,
                                               songs[index].subtitle),
@@ -207,4 +211,3 @@ class _homepageState extends State<homepage> {
     );
   }
 }
-
