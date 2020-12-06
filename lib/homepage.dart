@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/likedSongs.dart';
-import 'package:spotify/mylibrary.dart';
 import 'package:spotify/widgets.dart';
 import 'constants.dart';
-import 'package:line_icons/line_icons.dart';
 import 'w_homePage.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -16,7 +13,7 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
   ScrollController _scrollController;
-  var swipeUpOpacity = 0.001;
+  var swipeUpOpacity = 0.0001;
   AudioPlayer _audioPlayer = AudioPlayer();
 
   @override

@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'constants.dart';
@@ -98,15 +99,30 @@ class homesidetiles2 extends StatelessWidget {
   }
 }
 
-class appBar extends StatelessWidget {
+class appBar extends StatefulWidget {
   var opacity;
   appBar(this.opacity);
-  
+
+  @override
+  _appBarState createState() => _appBarState();
+}
+
+class _appBarState extends State<appBar> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  @override
+  void initState() {
+    super.initState();
+    setState((){
+//      print("In init");
+      print(Cauth);
+//      Cauth;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
-      color: Colors.red.withOpacity(opacity),
+      duration: Duration(milliseconds: 250),
+      color: Colors.red.withOpacity(widget.opacity),
       height: AppBar().preferredSize.height,
       width: double.infinity,
       child: FractionallySizedBox(
@@ -193,7 +209,7 @@ class _songcardState extends State<songcard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: (){
-        print("here");
+//        print("here");
         try{
           _store.collection(userEmail).doc(widget.i.toString()).update(
               {
