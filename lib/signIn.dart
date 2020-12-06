@@ -1,11 +1,14 @@
 //Here is the code of Sign Up
 //There is typo in file name
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:spotify/homepage.dart';
 import 'constants.dart';
+
+final _store=FirebaseFirestore.instance;
 
 class signIn extends StatelessWidget {
   static const id = "signIn";
@@ -59,7 +62,6 @@ class signIn extends StatelessWidget {
                     width: 400,
                     child: TextField(
                       onChanged: (Temail){
-//                    TODO:
                       userEmail=Temail;
                       },
                       cursorColor: Colors.black,
@@ -160,17 +162,26 @@ class _loginBoxState extends State<loginBox> {
   Future login() async {
 //    print(userEmail+"  "+pwd);
     try {
+
       final UserCredential userCredential = await widget._auth
           .createUserWithEmailAndPassword(
         email: userEmail,
         password: pwd,
       );
 //      print(userCredential);
+      for (int i=0;i<songs.length;i++){
+        _store.collection(userEmail).doc(i.toString()).set(
+            {
+              "liked": -1,
+            }
+        );
+      }
     Cauth=true;
+
     Navigator.pushNamed(context, homepage.id);
     }
     catch(e){
-//      print("_");
+      print("_");
       return false;
     }
   }
