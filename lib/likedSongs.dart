@@ -2,46 +2,91 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:spotify/constants.dart';
 import 'package:spotify/widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class likedSongs extends StatelessWidget {
+final _store = FirebaseFirestore.instance;
+
+class likedSongs extends StatefulWidget {
   static const id = "likedSongs";
 
-//TODO: Get indices of the liked songs
-  var likes = [1, 2, 3, 4];
+  @override
+  _likedSongsState createState() => _likedSongsState();
+}
 
-  List<TableRow> songTile() {
+class _likedSongsState extends State<likedSongs> {
+//  var likes = [1, 2, 3, 4];
+  List<int> likes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getLikes();
+  }
+
+  void getLikes() async {
+    for (int i = 0; i < songs.length; i++) {
+      try {
+        var doc =
+            _store.collection(userEmail).doc(i.toString()).get().then((v) {
+          if (v.data().containsValue(1)) {
+            setState(() {
+              likes.add(i);
+//              print(i);
+            });
+          }
+//          print(v);
+//          print(v.data());
+//        print(v.data().keys);
+        });
+      } catch (e) {}
+//      finally{
+//        setState(() {
+//          print(likes);
+//        });
+//      }
+    }
+  }
+
+  List<TableRow> songTile(likes) {
     List<TableRow> temp = [];
     for (int i = 0; i < likes.length; i++) {
       temp.add(fakeEntry());
       temp.add(likeCard(likes[i]));
-
     }
     return temp;
   }
-  TableRow fakeEntry(){
+
+  TableRow fakeEntry() {
     return TableRow(
       children: [
-        SizedBox(height: 20,),
-        SizedBox(height: 20,),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
   }
+
   TableRow likeCard(i) {
     return TableRow(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              i.toString(),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-            hseparators(),
+//            Text(
+//              "",
+//              style: TextStyle(
+//                color: Colors.white,
+//                fontSize: 16,
+//                fontWeight: FontWeight.w300,
+//              ),
+//            ),
+//            hseparators(),
             SizedBox(
               height: 30,
               width: 30,
@@ -64,24 +109,52 @@ class likedSongs extends StatelessWidget {
             ),
           ],
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              songs[i].subtitle,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+        SizedBox(
+          height: 30,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                songs[i].subtitle,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 30,
+          child: Container(
+            alignment: Alignment.bottomLeft,
+            child: GestureDetector(
+              onDoubleTap: () {
+                setState(() {
+                  try {
+//                    _store.collection(userEmail).add({
+//                      "liked": 5,
+//                    });
+                  _store.collection(userEmail).doc(i.toString()).update(
+                    {
+                      "liked": -1,
+                    }
+                  );
+                    likes.remove(i);
+                  } catch (e) {
+//                    print(e);
+                  }
+                });
+              },
+              child: Icon(
+                Icons.bookmark_border,
+                color: Colors.green,
               ),
             ),
-          ],
-        ),
-        Container(
-          alignment: Alignment.bottomLeft,
-          child: Icon(Icons.bookmark_border,color: Colors.green,),
+          ),
         ),
       ],
     );
@@ -200,7 +273,7 @@ class likedSongs extends StatelessWidget {
                                     ],
                                   )
                                 ] +
-                                songTile(),
+                                songTile(likes),
                           ),
                         )
                       ],
