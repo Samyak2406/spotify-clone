@@ -10,7 +10,6 @@ import 'logIn.dart';
 AudioPlayer _audioPlayer=AudioPlayer();
 var _store=FirebaseFirestore.instance;
 
-
 class homesidetiles extends StatelessWidget {
   var icon;
   var text;
@@ -202,6 +201,7 @@ class songcard extends StatefulWidget {
 
 class _songcardState extends State<songcard> {
   double ops=0;
+  bool fresh=true;
 
   Color defColor=Color(0xff171717);
   bool spy=false;
@@ -260,9 +260,21 @@ class _songcardState extends State<songcard> {
                             duration: Duration(milliseconds: 400),
                             child: GestureDetector(
                               onTap: (){
-                                _audioPlayer.play(
-                                    "songs/lovely.mp3"
-                                );
+
+                                setState(() {
+                                 try{
+                                   if(fresh==true){
+                                     _audioPlayer.play(
+                                         "songs/lovely.mp3"
+                                     );
+                                     fresh=false;
+                                   }
+                                   else{
+                                     _audioPlayer.stop();
+                                     fresh=true;
+                                   }
+                                 }catch(e){}
+                                });
                               },
                               child: AnimatedContainer(
                                 decoration: BoxDecoration(
@@ -273,7 +285,7 @@ class _songcardState extends State<songcard> {
                                 height: 40,
                                 width: 40,
                                 child: Icon(
-                                  Icons.play_arrow,
+                                  fresh?Icons.play_arrow:Icons.pause,
                                   color: spy? Colors.white.withOpacity(1):Colors.white.withOpacity(0),
                                 ),
 

@@ -189,6 +189,11 @@ class _homepageState extends State<homepage> {
                                       childCount: songs.length,
                                     ),
                                   ),
+                                  SliverList(
+                                    delegate: SliverChildListDelegate([
+                                      SizedBox(height: 100,),
+                                    ]),
+                                  )
                                 ],
                               ),
                             ),
@@ -200,7 +205,6 @@ class _homepageState extends State<homepage> {
                   ),
                 ],
               ),
-              playBar(),
             ],
           ),
         ),
