@@ -1,16 +1,18 @@
-# spotify
+# Spotify-Clone
+## Flutter Website
 
-A new Flutter application.
+<div style="display:flex;flex-direction:row;justify-content: space-between">
+<img src="screenshots/Hover.gif" alt="screen_01" height="300" />
+<img src="screenshots/LikeSong.gif" alt="screen_03" height="300" />
+</div>
 
-## Getting Started
+<div style="display:flex;flex-direction:row;justify-content: space-between">
+<img src="screenshots/Responsive.gif" alt="screen_02" height="300" />
+<img src="screenshots/Search.gif" alt="screen_04" height="300" />
+<img src="screenshots/Signup.gif" alt="screen_04" height="300" />
+</div>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributors:
+Parth Choksi
+Smit Patel
+Vraj Shah
