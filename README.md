@@ -1,6 +1,10 @@
 # Spotify-Clone
 ## Flutter Website
 
+#Live at:
+https://samyak2406.github.io/spotify-deploy/#homepage
+
+
 <div style="display:flex;flex-direction:row;justify-content: space-between">
 <img src="screenshots/Hover.gif" alt="screen_01" height="300" />
 <img src="screenshots/LikeSong.gif" alt="screen_03" height="300" />
